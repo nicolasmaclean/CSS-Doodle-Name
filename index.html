@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS Doodles</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="letters">
+    <!-- --n: calc(@col() / 15); -->
+    <!-- --n: calc(@abs(16-@col()) / 15); -->
+    <css-doodle class="N item">
+            :doodle {
+                @grid: 15 / 61vmin;
+                clip-path: polygon(0 0, 20% 0, 80% 68%, 80% 0, 100% 0, 100% 100%, 80% 100%, 20% 32%, 20% 100%, 0 100%, 0 0);
+                background: #2e3644;
+            }
+            
+            border-radius: 50%;
+            border: calc(1px + .1vmin) solid transparent;
+            --r: @rand(360deg);
+            --n: calc(@abs(@abs(@row() - 8) + @abs(@col() - 8) - 15) / 15);;
+            
+            transform: rotate(var(--r));
+            border-left-color: hsl(calc(var(--n) * 180), 60%, 60%);
+
+        animation: spin calc(.6s / var(--n)) linear infinite;
+
+        @keyframes spin {
+            to { 
+                transform: rotate(calc(var(--r) + @pick(1turn, -1turn)));
+            }
+        }
+    </css-doodle>
+
+    <!-- --n: calc((@col()) / 15); -->
+    <!-- --n: calc(@abs(15-@col()) / 15); -->
+    <css-doodle class="M item">
+        :doodle {
+            @grid: 15 / 61vmin;
+            clip-path: polygon(0 0, 20% 0, 50% 47%, 80% 0, 100% 0, 100% 100%, 80% 100%, 80% 32%, 55% 70%, 45% 70%, 20% 32%, 20% 100%, 0 100%, 0 0);
+            background: #2e3644;
+        }
+        
+        border-radius: 50%;
+        border: calc(1px + .1vmin) solid transparent;
+        --r: @rand(360deg);
+        --n: calc(@abs(@abs(@row() - 8) + @abs(@col() - 8) - 15) / 15);
+
+        transform: rotate(var(--r));
+        border-left-color: hsl(calc(var(--n) * 180 + 180), 60%, 60%);
+
+        animation: spin calc(.6s / var(--n)) linear infinite;
+
+        @keyframes spin {
+            to { 
+                transform: rotate(calc(var(--r) + @pick(1turn, -1turn)));
+            }
+        }
+    </css-doodle>
+</div>
+
+<div id="main">
+    <h>Mission Statement</h>
+</div>
+
+<script src="node_modules/css-doodle/css-doodle.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
